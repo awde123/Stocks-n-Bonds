@@ -3,6 +3,7 @@
 ## imports
 import os, sys
 from subprocess import Popen
+from decimal import *
 
 ## file operations
 def readPrice(url):
@@ -164,9 +165,22 @@ def sell():
     global stocks
     print("Ask broker to sell what?")
 
+def changeMoney(newVal, reason):
+    global money
+    if newVal > money:
+        print("You got %s dollars from %s. Your new total is %s." % (float(newVal - money) / 100.0, reason, float(newVal)/100))
+    else:
+        print("You spent %s dollars on %s. Your new total is %s." % (float(money - newVal) / 100.0, reason, float(newVal)/100))
+    money = newVal
+
 def cPaper():
     play("operator.mp3")
     play("phone.aiff")
+    print("What is your answer?")
+    with open('.days/%s' % date,'r') as k:
+        if raw_input().lower() == k.read().splitlines()[9]:
+            print("You got it right! Your prize is 50 dollars!")
+            changeMoney(money + 5000, "the newspaper")
 
 def endDay():
     global nd
