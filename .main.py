@@ -99,13 +99,13 @@ def quit():
     sys.exit("Goodbye!")
 
 def report():
-    print("WIP")
+    print("You have %s U.S. Dollars, %s shares of GE, %s share of GM, %s shares of KO, and ")
 
 def buy():
-    print("WIP")
+    print("Ask broker to buy what?")
 
 def sell():
-    print("WIP")
+    print("Ask broker to sell what?")
 
 def short():
     print("WIP")
