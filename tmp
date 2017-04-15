@@ -1,8 +1,0 @@
-if os.path.isfile(".%s" % user):
-    print("Welcome back, %s!" % user)
-    with open(".%s" % user) as f:
-        for line in f:
-            (key, val) = line.split()
-            d[int(key)] = val
-    u = open(".%s" % user, 'r').read().splitlines()
-    money = int(u[0]); date = int(u[1]); score = int(u[2]); stocks = u[3]
