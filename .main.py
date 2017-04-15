@@ -99,7 +99,7 @@ def quit():
     sys.exit("Goodbye!")
 
 def report():
-    print("You have %s U.S. Dollars, %s shares of GE, %s share of GM, %s shares of KO, and ")
+    print("")
 
 def buy():
     print("Ask broker to buy what?")
@@ -133,7 +133,7 @@ def name():
     global money, date, score
     names = open('.resources/names', 'r').read().splitlines()
     print("Please enter your first name: ")
-    user = raw_input()
+    user = raw_input().lower()
     if not user in names:
         print("I don't see you on my list")
         return name()
@@ -160,6 +160,7 @@ def menu():
 ## execution
 clear()
 name = name()
+clear()
 while run:
     play("alarm.mp3")
     print(writeNews())
