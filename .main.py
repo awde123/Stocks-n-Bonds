@@ -26,8 +26,43 @@ def writeNews():
         j += """<div class="collumn">
         <div class="head"><span class="headline hl3">{title}</span><p><span class="headline hl4">{author}</span></p></div>
         {text}</p></div>\n""".format(**indv)
+    j += """<div class="collumn">
+    <div class="head"><span class="headline hl3">The Stock Report</span><p><span class="headline hl4">Polly Esther</span></p></div>
+    <table style="width:100%">
+  <tr>
+    <th><b>Stock Symbol</th>
+    <th>Company Name</th>
+    <th>Price</b></th>
+  </tr>
+  <tr>
+    <td>GE</td>
+    <td>General Electric</td>
+    <td>{GE}</td>
+  </tr>
+    <tr>
+        <td>GM</td>
+        <td>General Motors</td>
+        <td>{GM}</td>
+    </tr>
+    <tr>
+        <td>KO</td>
+        <td>Coca-Cola</td>
+        <td>{KO}</td>
+    </tr>
+    <tr>
+        <td>IN</td>
+        <td>Invincible Oil</td>
+        <td>{IN}</td>
+    </tr>
+    <tr>
+        <td>PT</td>
+        <td>Pittsburgh Coal</td>
+        <td>{PT}</td>
+    </tr>
+</table>
+</p></div>\n""".format(**stockPrice)
     fmt_dict = {
-        "title": "Today's Paper",
+        "title": "Nation Daily",
         "square": "The best news ever",
         "loc" : loc,
         "date" : dat,
@@ -75,14 +110,34 @@ def display(url):
 def dispnews():
     display('.news/index.html')
 
+def updateStocks():
+    global stockPrice
+    with open('.days/%s' % date,'r') as k:
+        dat = k.read().splitlines()
+    stockPrice = {"GE" : dat[4],"GM" : dat[5],"KO" : dat[6],"IN" : dat[7],"PT" : dat[8]}
+
 ## init
 with open('.resources/calendar', 'r') as f:
     cal = f.readlines()
 run = True
-money = 0
+money = 50000
 date = 0
-score = 0
-stocks = {}
+stockInv = {
+    "GE" : 0,
+    "GM" : 0,
+    "KO" : 0,
+    "IN" : 0,
+    "PT" : 0,
+}
+
+stockPrice = {
+    "GE" : 0,
+    "GM" : 0,
+    "KO" : 0,
+    "IN" : 0,
+    "PT" : 0,
+}
+
 nd = False
 
 def play(sound):
@@ -92,7 +147,7 @@ def clear():
     os.system('clear')
 
 def save():
-    open(".%s" % name, 'w').write("%s\n%s\n%s\n%s\n" % (money, date, score, stocks))
+    open(".%s" % name, 'w').write("%s\n%s\n%s\n" % (money, date, stocks))
 
 def quit():
     save()
@@ -102,13 +157,12 @@ def report():
     print("")
 
 def buy():
+    global stocks
     print("Ask broker to buy what?")
 
 def sell():
+    global stocks
     print("Ask broker to sell what?")
-
-def short():
-    print("WIP")
 
 def cPaper():
     play("operator.mp3")
@@ -130,7 +184,7 @@ options = {
 
 ## user interface
 def name():
-    global money, date, score
+    global money, date
     names = open('.resources/names', 'r').read().splitlines()
     print("Please enter your first name: ")
     user = raw_input().lower()
@@ -163,6 +217,7 @@ name = name()
 clear()
 while run:
     play("alarm.mp3")
+    updateStocks()
     print(writeNews())
     while not nd:
         options[menu()]()

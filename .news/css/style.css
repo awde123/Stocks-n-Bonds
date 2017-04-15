@@ -16,6 +16,11 @@ header{
     margin-bottom: 20px;
 }
 
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
 p{
     margin-top: 0;
     margin-bottom: 20px;
