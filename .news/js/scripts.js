@@ -1,0 +1,22 @@
+$(document).ready(function() {
+        $("#MTitle").html("The Daily Bugle");
+        $("#CornerBox").html("Keep Calm <p>and Carry On");
+        $("#Location").html(Adrian);
+        $("#Date").html(LOLOL);
+        $("#Length").html(so many pages);
+        $("#Head1").html("SMELLS");
+        $("#Auth1").html("MR. SMELL");
+        $("#Art1").html("MANY WORDS ARE GOOD");
+        $("#Head2").html("SMELLS");
+        $("#Auth2").html("MR. SMELL");
+        $("#Art2").html("MANY WORDS ARE GOOD");
+        $("#Head3").html("SMELLS");
+        $("#Auth3").html("MR. SMELL");
+        $("#Art3").html("MANY WORDS ARE GOOD");
+        $("#Head4").html("SMELLS");
+        $("#Auth4").html("MR. SMELL");
+        $("#Art4").html("MANY WORDS ARE GOOD");
+        $("#Head5").html("SMELLS");
+        $("#Auth5").html("MR. SMELL");
+        $("#Art5").html("MANY WORDS ARE GOOD");
+});

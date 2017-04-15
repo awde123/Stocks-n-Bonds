@@ -1,0 +1,10 @@
+#! /bin/bash
+while true
+do
+  if ! pgrep -x "python" > /dev/null
+  then
+    exit
+  else
+    afplay .resources/music/audio.m4a
+  fi
+done
