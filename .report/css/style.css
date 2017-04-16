@@ -1,0 +1,16 @@
+body{
+    font-family: 'woop', serif;
+    font-size: 14px;
+    background-image: url("paper.gif");
+}
+
+.imageContainer {
+      width:301px;
+      height:302px;
+      background-image: url('stamp.gif');
+}
+
+@font-face {
+  font-family: woop;
+  src: url('typewriter.otf');
+}
