@@ -26,7 +26,7 @@ def writeNews():
         }
         j += """<div class="collumn">
         <div class="head"><span class="headline hl3">{title}</span><p><span class="headline hl4">{author}</span></p></div>
-        {text}</p></div>\n""".format(**indv)
+        &ensp;{text}</p></div>\n""".format(**indv)
     j += """<div class="collumn">
     <div class="head"><span class="headline hl3">The Stock Report</span><p><span class="headline hl4">Polly Esther</span></p></div>
     <table style="width:100%">
@@ -115,13 +115,14 @@ def updateStocks():
     global stockPrice
     with open('.days/%s' % date,'r') as k:
         dat = k.read().splitlines()
-    stockPrice = {"GE" : dat[4],"GM" : dat[5],"KO" : dat[6],"IN" : dat[7],"PT" : dat[8]}
+    stockPrice = {"GE" : int(dat[4]),"GM" : int(dat[5]),"KO" : int(dat[6]),"IN" : int(dat[7]),"PT" : int(dat[8])}
 
 ## init
 with open('.resources/calendar', 'r') as f:
     cal = f.readlines()
+q = False
 run = True
-money = 50000
+money = Decimal(500.00)
 date = 0
 stockInv = {
     "GE" : 0,
@@ -147,40 +148,64 @@ def play(sound):
 def clear():
     os.system('clear')
 
-def save():
-    open(".%s" % name, 'w').write("%s\n%s\n%s\n" % (money, date, stocks))
+##def save():
+##    open(".%s" % name, 'w').write("%s\n%s\n%s\n" % (money, date, stocks))
 
 def quit():
-    save()
+##    save()
     sys.exit("Goodbye!")
 
 def report():
     print("")
 
 def buy():
-    global stocks
+    global stockInv
+    print(stockPrice)
+    print(money)
     print("Ask broker to buy what?")
+    sel = raw_input()
+    if sel in stockInv:
+        print("How many? (Max %s)" % (money / stockPrice[sel]))
+        num = raw_input()
+        try:
+            if stockPrice[sel] * int(num) <= money:
+                stockInv[sel] += int(num)
+                changeMoney((money - stockPrice[sel] * int(num)), "%s shares of %s, giving you a total of %s shares" % (num, sel, stockInv[sel]))
+            else:
+                print("You don't have enough money!")
+        except ValueError:
+            print("I don't understand what you mean. Please use positive integers.")
+
+
+    else:
+        print("I'm sorry, I don't know what you mean. Please use stock symbols.")
 
 def sell():
-    global stocks
+    global stockInv
     print("Ask broker to sell what?")
 
 def changeMoney(newVal, reason):
     global money
     if newVal > money:
-        print("You got %s dollars from %s. Your new total is %s." % (float(newVal - money) / 100.0, reason, float(newVal)/100))
+        print("You got %s dollars from %s. Your new balance is %s." % (newVal - money, reason, newVal))
     else:
-        print("You spent %s dollars on %s. Your new total is %s." % (float(money - newVal) / 100.0, reason, float(newVal)/100))
-    money = newVal
+        print("You spent %s dollars on %s. Your new balance is %s." % (money - newVal, reason, newVal))
+    money = Decimal(newVal.quantize(Decimal('.01'), rounding=ROUND_DOWN))
 
 def cPaper():
     play("operator.mp3")
     play("phone.aiff")
-    print("What is your answer?")
-    with open('.days/%s' % date,'r') as k:
-        if raw_input().lower() == k.read().splitlines()[9]:
-            print("You got it right! Your prize is 50 dollars!")
-            changeMoney(money + 5000, "the newspaper")
+    if not q:
+        q = True
+        print("What is your answer?")
+        with open('.days/%s' % date,'r') as k:
+            if raw_input().lower() == k.read().splitlines()[9]:
+                print("You got it right! Your prize is 50 dollars!")
+                changeMoney(money + 5000, "the newspaper")
+            else:
+                print("I'm sorry, the correct answer was %s. Better luck next time!" % k.read().splitlines()[9])
+    else:
+        print("You've already called us today! Only one attempt allowed per day.")
 
 def endDay():
     global nd
