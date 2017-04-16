@@ -206,8 +206,6 @@ def buy():
 
 def sell():
     global stockInv
-    print(stockPrice)
-    print(money)
     print("Ask broker to sell what?")
     sel = raw_input()
     if sel in stockInv:
