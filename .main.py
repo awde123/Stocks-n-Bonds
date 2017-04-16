@@ -8,13 +8,34 @@ from decimal import *
 ## file operations
 def readPrice(url):
     return open('.prices/' + url, 'r').read().splitlines()
+def writeReport():
+    with open('.report/index.html','w') as f:
+        f.write("""
+        <html>
+        <link rel="stylesheet" href="css/style.css">
+        <head><title>Report</title>Stock Report for %s<p></head>
+        <body>Inventory:
+          <ul style="list-style-type:none">
+          <li>GE: %s = %s</li>
+          <li>GM: %s = %s</li>
+          <li>KO: %s = %s</li>
+          <li>IN: %s = %s</li>
+          <li>PT: %s = %s</li>
+        </ul>
+        Money: %s<p>
+        Assets: %s<p>
+        <div class="imageContainer">Total: %s</div>
+        </body>
+        </html>""" % (cal[date],stockInv["GE"],stockInv["GE"]*stockPrice["GE"],stockInv["GM"],stockInv["GM"]*stockPrice["GM"],stockInv["KO"],stockInv["KO"]*stockPrice["KO"],stockInv["IN"],stockInv["IN"]*stockPrice["IN"],stockInv["PT"],stockInv["PT"]*stockPrice["PT"],money,stockInv["GE"]*stockPrice["GE"]+stockInv["GM"]*stockPrice["GM"]+stockInv["KO"]*stockPrice["KO"]+stockInv["IN"]*stockPrice["IN"]+stockInv["PT"]*stockPrice["PT"],money+stockInv["GE"]*stockPrice["GE"]+stockInv["GM"]*stockPrice["GM"]+stockInv["KO"]*stockPrice["KO"]+stockInv["IN"]*stockPrice["IN"]+stockInv["PT"]*stockPrice["PT"]))
 def writeNews():
+    global money
     with open('.days/%s' % date,'r') as k:
         data = k.read().splitlines()
     loc = data[1]
     dat = cal[date]
     ln = data[2]
     price = data[3]
+    money -= int(filter(str.isdigit, price)) / 100
     with open('.days/%s.ar' % date, 'r') as w:
         art = w.read().splitlines()
     j = ""
@@ -104,7 +125,6 @@ def writeNews():
         f.write(text)
     return data[0]
 
-
 def display(url):
     os.system("open " + url)
 
@@ -156,18 +176,20 @@ def quit():
     sys.exit("Goodbye!")
 
 def report():
-    print("")
+    writeReport()
+    display('.report/index.html')
 
 def buy():
     global stockInv
-    print(stockPrice)
-    print(money)
     print("Ask broker to buy what?")
     sel = raw_input()
     if sel in stockInv:
-        print("How many? (Max %s)" % (money / stockPrice[sel]))
+        print("How many shares? (Max %s)" % (int(money / stockPrice[sel])))
         num = raw_input()
         try:
+            if int(num) < 0:
+                print("You can't buy negative shares!")
+                return
             if stockPrice[sel] * int(num) <= money:
                 stockInv[sel] += int(num)
                 changeMoney((money - stockPrice[sel] * int(num)), "%s shares of %s, giving you a total of %s shares" % (num, sel, stockInv[sel]))
@@ -175,14 +197,32 @@ def buy():
                 print("You don't have enough money!")
         except ValueError:
             print("I don't understand what you mean. Please use positive integers.")
-
-
     else:
-        print("I'm sorry, I don't know what you mean. Please use stock symbols.")
+        print("I'm sorry, I don't know what you mean. Please use the stock symbols found in the newspaper.")
 
 def sell():
     global stockInv
+    print(stockPrice)
+    print(money)
     print("Ask broker to sell what?")
+    sel = raw_input()
+    if sel in stockInv:
+        print("How many shares? (Max %s)" % (stockInv[sel]))
+        num = raw_input()
+        try:
+            if int(num) < 0:
+                print("You can't sell negative shares!")
+                return
+            if int(num) >= stockInv[sel]:
+                stockInv[sel] -= int(num)
+                changeMoney((money + stockPrice[sel] * int(num)), "%s shares of %s, giving you a total of %s shares" % (num, sel, stockInv[sel]))
+            else:
+                print("You don't have enough money!")
+        except ValueError:
+            print("I don't understand what you mean. Please use positive integers.")
+    else:
+        print("I'm sorry, I don't know what you mean. Please use the stock symbols found in the newspaper.")
+
 
 def changeMoney(newVal, reason):
     global money
@@ -193,6 +233,7 @@ def changeMoney(newVal, reason):
     money = Decimal(newVal.quantize(Decimal('.01'), rounding=ROUND_DOWN))
 
 def cPaper():
+    global q
     play("operator.mp3")
     play("phone.aiff")
     if not q:
@@ -201,7 +242,7 @@ def cPaper():
         with open('.days/%s' % date,'r') as k:
             if raw_input().lower() == k.read().splitlines()[9]:
                 print("You got it right! Your prize is 50 dollars!")
-                changeMoney(money + 5000, "the newspaper")
+                changeMoney(money + 50, "the newspaper")
             else:
                 print("I'm sorry, the correct answer was %s. Better luck next time!" % k.read().splitlines()[9])
     else:
