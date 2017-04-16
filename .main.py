@@ -177,6 +177,7 @@ def quit():
 
 def report():
     writeReport()
+    play('type.mp3')
     display('.report/index.html')
 
 def buy():
