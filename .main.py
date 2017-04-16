@@ -6,6 +6,18 @@ from subprocess import Popen
 from decimal import *
 from textwrap import fill
 
+class color:
+   PURPLE = '\033[95m'
+   CYAN = '\033[96m'
+   DARKCYAN = '\033[36m'
+   BLUE = '\033[94m'
+   GREEN = '\033[92m'
+   YELLOW = '\033[93m'
+   RED = '\033[91m'
+   BOLD = '\033[1m'
+   UNDERLINE = '\033[4m'
+   END = '\033[0m'
+
 ## file operations
 def readPrice(url):
     return open('.prices/' + url, 'r').read().splitlines()
@@ -277,16 +289,16 @@ def name():
     return user
 
 def menu():
-    print("__________________________")
-    print("| Operation        Option|")
-    print("| Report              1  |")
-    print("| Buy                 2  |")
-    print("| Sell                3  |")
-    print("| Read paper          4  |")
-    print("| Call paper          5  |")
-    print("| Go to sleep         6  |")
-    print("| Quit                0  |")
-    print(u"\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E")
+    print(u"\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510 ")
+    print(color.BOLD + u"\u2502 Operation        Option \u2502" + color.END)
+    print(u"\u2502 Report              1   \u2502")
+    print(u"\u2502 Buy                 2   \u2502")
+    print(u"\u2502 Sell                3   \u2502")
+    print(u"\u2502 Read paper          4   \u2502")
+    print(u"\u2502 Call paper          5   \u2502")
+    print(u"\u2502 Go to sleep         6   \u2502")
+    print(u"\u2502 Quit                0   \u2502")
+    print(u"\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518")
     sel = raw_input()
     if sel.isdigit():
         if (int(sel) < 7) and (int(sel) > -1):
@@ -308,4 +320,5 @@ while run:
         options[menu()]()
     print("You call it a day and hit the hay.")
     nd = False
+    q = False
     date += 1
