@@ -4,10 +4,12 @@
 import os, sys
 from subprocess import Popen
 from decimal import *
+from textwrap import fill
 
 ## file operations
 def readPrice(url):
     return open('.prices/' + url, 'r').read().splitlines()
+
 def writeReport():
     with open('.report/index.html','w') as f:
         f.write("""
@@ -27,6 +29,7 @@ def writeReport():
         <div class="imageContainer">Total: %s</div>
         </body>
         </html>""" % (cal[date],stockInv["GE"],stockInv["GE"]*stockPrice["GE"],stockInv["GM"],stockInv["GM"]*stockPrice["GM"],stockInv["KO"],stockInv["KO"]*stockPrice["KO"],stockInv["IN"],stockInv["IN"]*stockPrice["IN"],stockInv["PT"],stockInv["PT"]*stockPrice["PT"],money,stockInv["GE"]*stockPrice["GE"]+stockInv["GM"]*stockPrice["GM"]+stockInv["KO"]*stockPrice["KO"]+stockInv["IN"]*stockPrice["IN"]+stockInv["PT"]*stockPrice["PT"],money+stockInv["GE"]*stockPrice["GE"]+stockInv["GM"]*stockPrice["GM"]+stockInv["KO"]*stockPrice["KO"]+stockInv["IN"]*stockPrice["IN"]+stockInv["PT"]*stockPrice["PT"]))
+
 def writeNews():
     global money
     with open('.days/%s' % date,'r') as k:
@@ -241,11 +244,12 @@ def cPaper():
         q = True
         print("What is your answer?")
         with open('.days/%s' % date,'r') as k:
-            if raw_input().lower() == k.read().splitlines()[9]:
+            answer = k.read().splitlines()[9]
+            if raw_input().lower() == answer:
                 print("You got it right! Your prize is 50 dollars!")
                 changeMoney(money + 50, "the newspaper")
             else:
-                print("I'm sorry, the correct answer was %s. Better luck next time!" % k.read().splitlines()[9])
+                print("I'm sorry, the correct answer was %s. Better luck next time!" % answer)
     else:
         print("You've already called us today! Only one attempt allowed per day.")
 
@@ -275,14 +279,16 @@ def name():
     return user
 
 def menu():
-    print("#############")
-    print("Report      1")
-    print("Buy         2")
-    print("Sell        3")
-    print("Read paper  4")
-    print("Call paper  5")
-    print("Go to sleep 6")
-    print("Quit        0")
+    print("__________________________")
+    print("| Operation        Option|")
+    print("| Report              1  |")
+    print("| Buy                 2  |")
+    print("| Sell                3  |")
+    print("| Read paper          4  |")
+    print("| Call paper          5  |")
+    print("| Go to sleep         6  |")
+    print("| Quit                0  |")
+    print(u"\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E")
     sel = raw_input()
     if sel.isdigit():
         if (int(sel) < 7) and (int(sel) > -1):
@@ -299,7 +305,7 @@ clear()
 while run:
     play("alarm.mp3")
     updateStocks()
-    print(writeNews())
+    print(fill(writeNews()))
     while not nd:
         options[menu()]()
     print("You call it a day and hit the hay.")
