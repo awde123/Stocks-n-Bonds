@@ -183,8 +183,11 @@ def play(sound):
 def clear():
     os.system('clear')
 
-##def save():
-##    open(".%s" % name, 'w').write("%s\n%s\n%s\n" % (money, date, stocks))
+def save():
+    sav = "%s\n%s\n" % (money, date)
+    for j in stockInv.values():
+        sav += j + "\n"
+    print(j)
 
 def quit():
 ##    save()
