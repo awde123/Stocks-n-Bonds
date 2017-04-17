@@ -29,11 +29,11 @@ def writeReport():
             "gep" : stockInv["ge"] * stockPrice["ge"],
             "gmp" : stockInv["gm"] * stockPrice["gm"],
             "kop" : stockInv["ko"] * stockPrice["ko"],
-            "inp" : stockInv["in"] * stockPrice["in"],
+            "inn" : stockInv["in"] * stockPrice["in"],
             "ptp" : stockInv["ptp"] * stockPrice["pt"],
             "money" : money,
         }
-        reportPrint += {"assets" = (reportPrint["gep"] + reportPrint["gmp"] + reportPrint["kop"] + reportPrint["inp"] + reportPrint["ptp"]),}
+        reportPrint += {"assets" = (reportPrint["gep"] + reportPrint["gmp"] + reportPrint["kop"] + reportPrint["inn"] + reportPrint["ptp"]),}
         reportPrint += {"total" = (reportPrint["assets"] + money),}
         f.write("""
         <html>
@@ -44,7 +44,7 @@ def writeReport():
           <li>GE: {ge} = {gep}</li>
           <li>GM: {gm} = {gmp}</li>
           <li>KO: {ko} = {kop}</li>
-          <li>IN: {in} = {inp}</li>
+          <li>IN: {in} = {inn}</li>
           <li>PT: {pt} = {ptp}</li>
         </ul>
         Money: {money}<p>
