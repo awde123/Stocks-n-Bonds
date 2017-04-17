@@ -33,6 +33,7 @@ def writeReport():
             "inn" : stockInv["in"] * stockPrice["in"],
             "ptp" : stockInv["pt"] * stockPrice["pt"],
             "money" : money,
+            "day" : cal[date]
         })
         reportPrint["assets"] = (reportPrint["gep"] + reportPrint["gmp"] + reportPrint["kop"] + reportPrint["inn"] + reportPrint["ptp"])
         reportPrint["total"] = (reportPrint["assets"] + money)
