@@ -86,27 +86,27 @@ def writeNews():
   <tr>
     <td>GE</td>
     <td>General Electric</td>
-    <td>{GE}</td>
+    <td>{ge}</td>
   </tr>
     <tr>
         <td>GM</td>
         <td>General Motors</td>
-        <td>{GM}</td>
+        <td>{gm}</td>
     </tr>
     <tr>
         <td>KO</td>
         <td>Coca-Cola</td>
-        <td>{KO}</td>
+        <td>{ko}</td>
     </tr>
     <tr>
         <td>IN</td>
         <td>Invincible Oil</td>
-        <td>{IN}</td>
+        <td>{in}</td>
     </tr>
     <tr>
         <td>PT</td>
         <td>Pittsburgh Coal</td>
-        <td>{PT}</td>
+        <td>{pt}</td>
     </tr>
 </table>
 </p></div>\n""".format(**stockPrice)
