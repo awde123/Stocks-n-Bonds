@@ -40,7 +40,7 @@ def writeReport():
         Assets: %s<p>
         <div class="imageContainer">Total: %s</div>
         </body>
-        </html>""" % (cal[date],stockInv["GE"],stockInv["GE"]*stockPrice["GE"],stockInv["GM"],stockInv["GM"]*stockPrice["GM"],stockInv["KO"],stockInv["KO"]*stockPrice["KO"],stockInv["IN"],stockInv["IN"]*stockPrice["IN"],stockInv["PT"],stockInv["PT"]*stockPrice["PT"],money,stockInv["GE"]*stockPrice["GE"]+stockInv["GM"]*stockPrice["GM"]+stockInv["KO"]*stockPrice["KO"]+stockInv["IN"]*stockPrice["IN"]+stockInv["PT"]*stockPrice["PT"],money+stockInv["GE"]*stockPrice["GE"]+stockInv["GM"]*stockPrice["GM"]+stockInv["KO"]*stockPrice["KO"]+stockInv["IN"]*stockPrice["IN"]+stockInv["PT"]*stockPrice["PT"]))
+        </html>""" % (cal[date],stockInv["ge"],stockInv["ge"]*stockPrice["ge"],stockInv["gm"],stockInv["gm"]*stockPrice["gm"],stockInv["ko"],stockInv["ko"]*stockPrice["ko"],stockInv["in"],stockInv["in"]*stockPrice["in"],stockInv["pt"],stockInv["pt"]*stockPrice["pt"],money,stockInv["ge"]*stockPrice["ge"]+stockInv["gm"]*stockPrice["gm"]+stockInv["ko"]*stockPrice["ko"]+stockInv["in"]*stockPrice["in"]+stockInv["pt"]*stockPrice["pt"],money+stockInv["ge"]*stockPrice["ge"]+stockInv["gm"]*stockPrice["gm"]+stockInv["ko"]*stockPrice["ko"]+stockInv["in"]*stockPrice["in"]+stockInv["pt"]*stockPrice["pt"]))
 
 def writeNews():
     global money
