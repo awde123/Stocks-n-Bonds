@@ -304,7 +304,7 @@ def name():
 
 def menu():
     print(u"\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510 ")
-    print(color.BOLD + u"\u2502 Operation        Option \u2502" + color.END)
+    print(u"\u2502" + color.BOLD + "Operation        Option " + color.END + "\u2502")
     print(u"\u2502 Report              1   \u2502")
     print(u"\u2502 Buy                 2   \u2502")
     print(u"\u2502 Sell                3   \u2502")
