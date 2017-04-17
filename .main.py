@@ -33,9 +33,9 @@ def writeReport():
             "inn" : stockInv["in"] * stockPrice["in"],
             "ptp" : stockInv["pt"] * stockPrice["pt"],
             "money" : money,
-        }
-        reportPrint["assets"] = 3##(reportPrint["gep"] + reportPrint["gmp"] + reportPrint["kop"] + reportPrint["inn"] + reportPrint["ptp"])
-        reportPrint["total"] = 3##(reportPrint["assets"] + money)
+        })
+        reportPrint["assets"] = (reportPrint["gep"] + reportPrint["gmp"] + reportPrint["kop"] + reportPrint["inn"] + reportPrint["ptp"])
+        reportPrint["total"] = (reportPrint["assets"] + money)
         f.write("""
         <html>
         <link rel="stylesheet" href="css/style.css">
