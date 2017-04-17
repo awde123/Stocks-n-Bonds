@@ -51,7 +51,7 @@ def writeReport():
         Assets: {assets}<p>
         <div class="imageContainer">Total: {total}</div>
         </body>
-        </html>""".format(**reportPrint)
+        </html>""".format(**reportPrint))
 
 def writeNews():
     global money
