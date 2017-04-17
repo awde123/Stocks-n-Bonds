@@ -305,7 +305,7 @@ def name():
 def menu():
     print(u"\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510 ")
     print(u"\u2502" + color.BOLD + " Operation        Option " + color.END + u"\u2502")
-    print(u"\u2502 Report              1   \u2502")
+    print(u"\u2502 View report         1   \u2502")
     print(u"\u2502 Buy                 2   \u2502")
     print(u"\u2502 Sell                3   \u2502")
     print(u"\u2502 Read paper          4   \u2502")
@@ -338,4 +338,4 @@ try:
         q = False
         date += 1
 except IndexError:
-    print("end game")
+    print("")
