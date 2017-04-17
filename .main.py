@@ -22,6 +22,37 @@ class color:
 def readPrice(url):
     return open('.prices/' + url, 'r').read().splitlines()
 
+def writeReport():
+    print(stockInv)
+    with open('.report/index.html','w') as f:
+        reportPrint = stockInv + {
+            "gep" : ((stockInv["ge"]) * (stockPrice["ge"])),
+            "gmp" : stockInv["gm"] * stockPrice["gm"],
+            "kop" : stockInv["ko"] * stockPrice["ko"],
+            "inn" : stockInv["in"] * stockPrice["in"],
+            "ptp" : stockInv["ptp"] * stockPrice["pt"],
+            "money" : money,
+        }
+        reportPrint += {"assets" : (reportPrint["gep"] + reportPrint["gmp"] + reportPrint["kop"] + reportPrint["inn"] + reportPrint["ptp"]),}
+        reportPrint += {"total" : (reportPrint["assets"] + money),}
+        f.write("""
+        <html>
+        <link rel="stylesheet" href="css/style.css">
+        <head><title>Report</title>Stock Report for {day}<p></head>
+        <body>Inventory:
+          <ul style="list-style-type:none">
+          <li>GE: {ge} = {gep}</li>
+          <li>GM: {gm} = {gmp}</li>
+          <li>KO: {ko} = {kop}</li>
+          <li>IN: {in} = {inn}</li>
+          <li>PT: {pt} = {ptp}</li>
+        </ul>
+        Money: {money}<p>
+        Assets: {assets}<p>
+        <div class="imageContainer">Total: {total}</div>
+        </body>
+        </html>""".format(**reportPrint))
+
 def writeNews():
     global money
     with open('.days/%s' % date,'r') as k:
@@ -290,37 +321,6 @@ def menu():
     clear()
     print("Please enter a valid selection...")
     return menu()
-
-def writeReport():
-    print(stockInv)
-    with open('.report/index.html','w') as f:
-        reportPrint = stockInv + {
-            "gep" : ((stockInv["ge"]) * (stockPrice["ge"])),
-            "gmp" : stockInv["gm"] * stockPrice["gm"],
-            "kop" : stockInv["ko"] * stockPrice["ko"],
-            "inn" : stockInv["in"] * stockPrice["in"],
-            "ptp" : stockInv["ptp"] * stockPrice["pt"],
-            "money" : money,
-        }
-        reportPrint += {"assets" : (reportPrint["gep"] + reportPrint["gmp"] + reportPrint["kop"] + reportPrint["inn"] + reportPrint["ptp"]),}
-        reportPrint += {"total" : (reportPrint["assets"] + money),}
-        f.write("""
-        <html>
-        <link rel="stylesheet" href="css/style.css">
-        <head><title>Report</title>Stock Report for {day}<p></head>
-        <body>Inventory:
-          <ul style="list-style-type:none">
-          <li>GE: {ge} = {gep}</li>
-          <li>GM: {gm} = {gmp}</li>
-          <li>KO: {ko} = {kop}</li>
-          <li>IN: {in} = {inn}</li>
-          <li>PT: {pt} = {ptp}</li>
-        </ul>
-        Money: {money}<p>
-        Assets: {assets}<p>
-        <div class="imageContainer">Total: {total}</div>
-        </body>
-        </html>""".format(**reportPrint))
 
 ## execution
 clear()
