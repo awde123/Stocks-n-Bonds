@@ -24,13 +24,14 @@ def readPrice(url):
 
 def writeReport():
     print(stockInv)
+    print(stockPrice)
     with open('.report/index.html','w') as f:
         reportPrint = dict(stockInv, **{
             "gmp" : stockInv["gm"] * stockPrice["gm"],
             "gep" : ((stockInv["ge"]) * (stockPrice["ge"])),
             "kop" : stockInv["ko"] * stockPrice["ko"],
             "inn" : stockInv["in"] * stockPrice["in"],
-            "ptp" : stockInv["ptp"] * stockPrice["pt"],
+            "ptp" : stockInv["pt"] * stockPrice["pt"],
             "money" : money,
         }
         reportPrint = dict(reportPrint, **{"assets" : (reportPrint["gep"] + reportPrint["gmp"] + reportPrint["kop"] + reportPrint["inn"] + reportPrint["ptp"]),})
@@ -85,27 +86,27 @@ def writeNews():
   <tr>
     <td>GE</td>
     <td>General Electric</td>
-    <td>{GE}</td>
+    <td>{ge}</td>
   </tr>
     <tr>
         <td>GM</td>
         <td>General Motors</td>
-        <td>{GM}</td>
+        <td>{gm}</td>
     </tr>
     <tr>
         <td>KO</td>
         <td>Coca-Cola</td>
-        <td>{KO}</td>
+        <td>{ko}</td>
     </tr>
     <tr>
         <td>IN</td>
         <td>Invincible Oil</td>
-        <td>{IN}</td>
+        <td>{in}</td>
     </tr>
     <tr>
         <td>PT</td>
         <td>Pittsburgh Coal</td>
-        <td>{PT}</td>
+        <td>{pt}</td>
     </tr>
 </table>
 </p></div>\n""".format(**stockPrice)
@@ -161,7 +162,7 @@ def updateStocks():
     global stockPrice
     with open('.days/%s' % date,'r') as k:
         dat = k.read().splitlines()
-    stockPrice = {"GE" : int(dat[4]),"GM" : int(dat[5]),"KO" : int(dat[6]),"IN" : int(dat[7]),"PT" : int(dat[8])}
+    stockPrice = {"ge" : int(dat[4]),"gm" : int(dat[5]),"ko" : int(dat[6]),"in" : int(dat[7]),"pt" : int(dat[8])}
 
 ## init
 with open('.resources/calendar', 'r') as f:
