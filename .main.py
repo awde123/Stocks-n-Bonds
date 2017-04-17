@@ -25,7 +25,7 @@ def readPrice(url):
 def writeReport():
     print(stockInv)
     with open('.report/index.html','w') as f:
-        reportPrint = stockInv + {
+        reportPrint = dict(stockInv, **{
             "gmp" : stockInv["gm"] * stockPrice["gm"],
             "gep" : ((stockInv["ge"]) * (stockPrice["ge"])),
             "kop" : stockInv["ko"] * stockPrice["ko"],
@@ -33,8 +33,8 @@ def writeReport():
             "ptp" : stockInv["ptp"] * stockPrice["pt"],
             "money" : money,
         }
-        reportPrint += {"assets" : (reportPrint["gep"] + reportPrint["gmp"] + reportPrint["kop"] + reportPrint["inn"] + reportPrint["ptp"]),}
-        reportPrint += {"total" : (reportPrint["assets"] + money),}
+        reportPrint = dict(reportPrint, **{"assets" : (reportPrint["gep"] + reportPrint["gmp"] + reportPrint["kop"] + reportPrint["inn"] + reportPrint["ptp"]),})
+        reportPrint = dict(reportPrint, **{"total" : (reportPrint["assets"] + money),})
         f.write("""
         <html>
         <link rel="stylesheet" href="css/style.css">
