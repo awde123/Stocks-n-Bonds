@@ -25,23 +25,33 @@ def readPrice(url):
 def writeReport():
     print(stockInv)
     with open('.report/index.html','w') as f:
+        reportPrint = stockInv + {
+            "gep" = stockInv["ge"] * stockPrice["ge"],
+            "gmp" = stockInv["gm"] * stockPrice["gm"],
+            "kop" = stockInv["ko"] * stockPrice["ko"],
+            "inp" = stockInv["in"] * stockPrice["in"],
+            "ptp" = stockInv["ptp"] * stockPrice["pt"],
+            "money" = money,
+        }
+        reportPrint += {"assets" = reportPrint["gep"] + reportPrint["gmp"] + reportPrint["kop"] + reportPrint["inp"] + reportPrint["ptp"]}
+        reportPrint += {"total" = reportPrint["assets"] + money}
         f.write("""
         <html>
         <link rel="stylesheet" href="css/style.css">
-        <head><title>Report</title>Stock Report for %s<p></head>
+        <head><title>Report</title>Stock Report for {day}<p></head>
         <body>Inventory:
           <ul style="list-style-type:none">
-          <li>GE: %s = %s</li>
-          <li>GM: %s = %s</li>
-          <li>KO: %s = %s</li>
-          <li>IN: %s = %s</li>
-          <li>PT: %s = %s</li>
+          <li>GE: {ge} = {gep}</li>
+          <li>GM: {gm} = {gmp}</li>
+          <li>KO: {ko} = {kop}</li>
+          <li>IN: {in} = {inp}</li>
+          <li>PT: {pt} = {ptp}</li>
         </ul>
-        Money: %s<p>
-        Assets: %s<p>
-        <div class="imageContainer">Total: %s</div>
+        Money: {money}<p>
+        Assets: {assets}<p>
+        <div class="imageContainer">Total: {total}</div>
         </body>
-        </html>""" % (cal[date],stockInv["ge"],stockInv["ge"]*stockPrice["ge"],stockInv["gm"],stockInv["gm"]*stockPrice["gm"],stockInv["ko"],stockInv["ko"]*stockPrice["ko"],stockInv["in"],stockInv["in"]*stockPrice["in"],stockInv["pt"],stockInv["pt"]*stockPrice["pt"],money,stockInv["ge"]*stockPrice["ge"]+stockInv["gm"]*stockPrice["gm"]+stockInv["ko"]*stockPrice["ko"]+stockInv["in"]*stockPrice["in"]+stockInv["pt"]*stockPrice["pt"],money+stockInv["ge"]*stockPrice["ge"]+stockInv["gm"]*stockPrice["gm"]+stockInv["ko"]*stockPrice["ko"]+stockInv["in"]*stockPrice["in"]+stockInv["pt"]*stockPrice["pt"]))
+        </html>""".format(**reportPrint)
 
 def writeNews():
     global money
