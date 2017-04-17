@@ -23,8 +23,6 @@ def readPrice(url):
     return open('.prices/' + url, 'r').read().splitlines()
 
 def writeReport():
-    print(stockInv)
-    print(stockPrice)
     with open('.report/index.html','w') as f:
         reportPrint = dict(stockInv, **{
             "gmp" : stockInv["gm"] * stockPrice["gm"],
