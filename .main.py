@@ -326,13 +326,16 @@ def menu():
 clear()
 name = name()
 clear()
-while run:
-    play("alarm.mp3")
-    updateStocks()
-    print(fill(writeNews()))
-    while not nd:
-        options[menu()]()
-    print("You call it a day and hit the hay.")
-    nd = False
-    q = False
-    date += 1
+try:
+    while run:
+        play("alarm.mp3")
+        updateStocks()
+        print(fill(writeNews()))
+        while not nd:
+            options[menu()]()
+        print("You call it a day and hit the hay.")
+        nd = False
+        q = False
+        date += 1
+except IndexError:
+    print("end game")
