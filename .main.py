@@ -31,7 +31,7 @@ def writeReport():
             "gep" : ((stockInv["ge"]) * (stockPrice["ge"])),
             "kop" : stockInv["ko"] * stockPrice["ko"],
             "inn" : stockInv["in"] * stockPrice["in"],
-            "ptp" : stockInv["ptp"] * stockPrice["pt"],
+            "ptp" : stockInv["pt"] * stockPrice["pt"],
             "money" : money,
         }
         reportPrint += {"assets" : (reportPrint["gep"] + reportPrint["gmp"] + reportPrint["kop"] + reportPrint["inn"] + reportPrint["ptp"]),}
