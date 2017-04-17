@@ -26,12 +26,12 @@ def writeReport():
     print(stockInv)
     with open('.report/index.html','w') as f:
         reportPrint = stockInv + {
-            "gep" = stockInv["ge"] * stockPrice["ge"],
-            "gmp" = stockInv["gm"] * stockPrice["gm"],
-            "kop" = stockInv["ko"] * stockPrice["ko"],
-            "inp" = stockInv["in"] * stockPrice["in"],
-            "ptp" = stockInv["ptp"] * stockPrice["pt"],
-            "money" = money,
+            "gep" : stockInv["ge"] * stockPrice["ge"],
+            "gmp" : stockInv["gm"] * stockPrice["gm"],
+            "kop" : stockInv["ko"] * stockPrice["ko"],
+            "inp" : stockInv["in"] * stockPrice["in"],
+            "ptp" : stockInv["ptp"] * stockPrice["pt"],
+            "money" : money,
         }
         reportPrint += {"assets" = reportPrint["gep"] + reportPrint["gmp"] + reportPrint["kop"] + reportPrint["inp"] + reportPrint["ptp"]}
         reportPrint += {"total" = reportPrint["assets"] + money}
