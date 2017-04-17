@@ -338,9 +338,9 @@ try:
             options[menu()]()
         print("You call it a day and hit the hay.")
         print("(Press enter to continue)")
-        raw_input
+        raw_input()
         nd = False
         q = False
         date += 1
 except IndexError:
-    print("")
+    print(color.RED + "Today is Tuesday, October 29th, 1929." + color.END)
