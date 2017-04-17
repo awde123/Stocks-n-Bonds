@@ -55,14 +55,14 @@ def writeReport():
 
 def writeNews():
     global money
-    with open('.days/%s' % date,'r') as k:
+    with open('.resources/.days/%s' % date,'r') as k:
         data = k.read().splitlines()
     loc = data[1]
     dat = cal[date]
     ln = data[2]
     price = data[3]
     money -= int(filter(str.isdigit, price)) / 100
-    with open('.days/%s.ar' % date, 'r') as w:
+    with open('.resources/.days/%s.ar' % date, 'r') as w:
         art = w.read().splitlines()
     j = ""
     for i in art:
@@ -159,7 +159,7 @@ def dispnews():
 
 def updateStocks():
     global stockPrice
-    with open('.days/%s' % date,'r') as k:
+    with open('.resources/.days/%s' % date,'r') as k:
         dat = k.read().splitlines()
     stockPrice = {"ge" : int(dat[4]),"gm" : int(dat[5]),"ko" : int(dat[6]),"in" : int(dat[7]),"pt" : int(dat[8])}
 
@@ -267,7 +267,7 @@ def cPaper():
     if not q:
         q = True
         print("What is your answer?")
-        with open('.days/%s' % date,'r') as k:
+        with open('.resources.days/%s' % date,'r') as k:
             answer = k.read().splitlines()[9]
             if raw_input().lower() == answer:
                 print("You got it right! Your prize is 50 dollars!")
