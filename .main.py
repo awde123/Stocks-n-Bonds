@@ -160,19 +160,19 @@ run = True
 money = Decimal(500.00)
 date = 0
 stockInv = {
-    "GE" : 0,
-    "GM" : 0,
-    "KO" : 0,
-    "IN" : 0,
-    "PT" : 0,
+    "ge" : 0,
+    "gm" : 0,
+    "ko" : 0,
+    "in" : 0,
+    "pt" : 0,
 }
 
 stockPrice = {
-    "GE" : 0,
-    "GM" : 0,
-    "KO" : 0,
-    "IN" : 0,
-    "PT" : 0,
+    "ge" : 0,
+    "gm" : 0,
+    "ko" : 0,
+    "in" : 0,
+    "pt" : 0,
 }
 
 nd = False
@@ -198,7 +198,7 @@ def report():
 def buy():
     global stockInv
     print("Ask broker to buy what?")
-    sel = raw_input()
+    sel = raw_input().lower()
     if sel in stockInv:
         print("How many shares? (Max %s)" % (int(money / stockPrice[sel])))
         num = raw_input()
@@ -219,7 +219,7 @@ def buy():
 def sell():
     global stockInv
     print("Ask broker to sell what?")
-    sel = raw_input()
+    sel = raw_input().lower()
     if sel in stockInv:
         print("How many shares? (Max %s)" % (stockInv[sel]))
         num = raw_input()
