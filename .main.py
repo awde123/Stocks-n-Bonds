@@ -303,6 +303,7 @@ def name():
     return user
 
 def menu():
+    print
     print(u"\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510 ")
     print(u"\u2502" + color.BOLD + " Operation        Option " + color.END + u"\u2502")
     print(u"\u2502 View report         1   \u2502")
@@ -330,10 +331,14 @@ try:
     while run:
         play("alarm.mp3")
         updateStocks()
+        print("Today is %s." % cal[date].replace("\n",""))
+        print
         print(fill(writeNews()))
         while not nd:
             options[menu()]()
         print("You call it a day and hit the hay.")
+        print("(Press enter to continue)")
+        raw_input
         nd = False
         q = False
         date += 1
