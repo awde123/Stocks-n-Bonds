@@ -23,7 +23,7 @@ def readPrice(url):
     return open('.prices/' + url, 'r').read().splitlines()
 
 def writeReport():
-    global stockInv, stockPrice
+    print(stockInv)
     with open('.report/index.html','w') as f:
         f.write("""
         <html>
