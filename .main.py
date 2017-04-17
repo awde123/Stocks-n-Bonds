@@ -26,7 +26,7 @@ def writeReport():
     print(stockInv)
     with open('.report/index.html','w') as f:
         reportPrint = stockInv + {
-            "gep" : stockInv["ge"] * stockPrice["ge"],
+            "gep" : ((stockInv["ge"]) * (stockPrice["ge"])),
             "gmp" : stockInv["gm"] * stockPrice["gm"],
             "kop" : stockInv["ko"] * stockPrice["ko"],
             "inn" : stockInv["in"] * stockPrice["in"],
