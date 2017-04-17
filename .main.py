@@ -24,6 +24,7 @@ def readPrice(url):
 
 def writeReport():
     print(stockInv)
+    print(stockPrice)
     with open('.report/index.html','w') as f:
         reportPrint = stockInv + {
             "gmp" : stockInv["gm"] * stockPrice["gm"],
@@ -161,7 +162,7 @@ def updateStocks():
     global stockPrice
     with open('.days/%s' % date,'r') as k:
         dat = k.read().splitlines()
-    stockPrice = {"GE" : int(dat[4]),"GM" : int(dat[5]),"KO" : int(dat[6]),"IN" : int(dat[7]),"PT" : int(dat[8])}
+    stockPrice = {"ge" : int(dat[4]),"gm" : int(dat[5]),"ko" : int(dat[6]),"in" : int(dat[7]),"pt" : int(dat[8])}
 
 ## init
 with open('.resources/calendar', 'r') as f:
