@@ -293,6 +293,8 @@ options = {
 
 ## user interface
 def name():
+    global money, date
+    names = open('.resources/names', 'r').read().splitlines()
     print("Please enter your first name: ")
     user = raw_input().lower()
     return user
