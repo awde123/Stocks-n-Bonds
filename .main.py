@@ -61,7 +61,7 @@ def writeNews():
     dat = cal[date]
     ln = data[2]
     price = data[3]
-    money -= float(int(filter(str.isdigit, price))) / 100
+    money -= Decimal(int(filter(str.isdigit, price))) / 100
     with open('.resources/.days/%s.ar' % date, 'r') as w:
         art = w.read().splitlines()
     j = ""
