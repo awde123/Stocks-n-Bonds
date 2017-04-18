@@ -267,7 +267,7 @@ def cPaper():
     if not q:
         q = True
         print("What is your answer?")
-        with open('.resources.days/%s' % date,'r') as k:
+        with open('.resources/.days/%s' % date,'r') as k:
             answer = k.read().splitlines()[9]
             if raw_input().lower() == answer:
                 print("You got it right! Your prize is 50 dollars!")
@@ -343,4 +343,8 @@ try:
         q = False
         date += 1
 except IndexError:
+    os.system("killall -9 afplay")
     print(color.RED + "Today is Tuesday, October 29th, 1929." + color.END)
+    print(color.RED + "After work, you heard on the radio that the market has crashed. You don't feel good. You're not only worried about your stocks, but your future as a whole." + color.END)
+    print(color.RED + "Press enter to continue." + color.END)
+    raw_input()
