@@ -241,11 +241,11 @@ def sell():
             if int(num) < 0:
                 print("You can't sell negative shares!")
                 return
-            if int(num) >= stockInv[sel]:
+            if int(num) <= stockInv[sel]:
                 stockInv[sel] -= int(num)
                 changeMoney((money + stockPrice[sel] * int(num)), "%s shares of %s, giving you a total of %s shares" % (num, sel, stockInv[sel]))
             else:
-                print("You don't have enough money!")
+                print("You don't have enough shares!")
         except ValueError:
             print("I don't understand what you mean. Please use positive integers.")
     else:
