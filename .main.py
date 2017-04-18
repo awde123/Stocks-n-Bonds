@@ -340,7 +340,7 @@ try:
 except IndexError:
     os.system("killall -9 afplay")
     print(color.RED + "Today is Tuesday, October 29th, 1929." + color.END)
-    tuesday = """After work, you heard on the radio that the market has crashed. You don't feel good. You're not only worried about your stocks, but your future as a whole.
+    tuesday = """After work, you heard on the radio that the market has crashed. You don't feel good. You're not only worried about your stocks, but your future as a whole. You eventually fall asleep.
     """
     print(color.RED + tuesday + color.END)
     print(color.RED + "Press enter to continue." + color.END)
