@@ -298,6 +298,7 @@ def name():
     return user
 
 def menu():
+    print(fill(writeNews()))
     print
     print(u"\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510 ")
     print(u"\u2502" + color.BOLD + " Operation        Option " + color.END + u"\u2502")
@@ -328,7 +329,6 @@ try:
         updateStocks()
         print("Today is %s." % cal[date].replace("\n",""))
         print
-        print(fill(writeNews()))
         while not nd:
             options[menu()]()
         print("You call it a day and hit the hay.")
