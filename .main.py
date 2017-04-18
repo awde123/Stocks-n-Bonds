@@ -297,9 +297,6 @@ def name():
     names = open('.resources/names', 'r').read().splitlines()
     print("Please enter your first name: ")
     user = raw_input().lower()
-    if not user in names:
-        print("I don't see you on my list")
-        return name()
     return user
 
 def menu():
