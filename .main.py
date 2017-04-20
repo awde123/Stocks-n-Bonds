@@ -343,11 +343,13 @@ except IndexError:
     """
     print(color.RED + tuesday + color.END)
     print(color.RED + "Press enter to continue." + color.END)
+    raw_input()
     print(color.RED + "Today is Wednesday, October 29th, 1929." + color.END)
     wednesday = """You aren't able to get in touch with your broker. You visit his office, his favorite coffee shop, everywhere, but you can't find him. You hear rumors at work that your branch may be shut down. You could be losing your job soon.
     """
     print(color.RED + wednesday + color.END)
     print(color.RED + "Press enter to continue." + color.END)
+    raw_input()
     wednesday = """Your broker killed himself after the crash. The market dove again today. You're afraid to look. Your entire portfolio is basically worthless now. You liquidate your assets, as you will be needing all the cash you can get your hands on.
     """
     print(color.RED + wednesday + color.END)
